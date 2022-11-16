@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина</title>
+</head>
+<body>
+{% for product in cart %}
+{{product.user_product}} <br>
+{{product.product_quantity}}<br>
+{{product.total_for_current_product}}<br>
+<form action="/delete-product/{{ product.id }}" method="post">
+    {% csrf_token %}
+    <button>Delete</button>
+</form>
+{%endfor%}
+
+Итог:{{ total }}sum
+
+<form action="send-to-tg" nethod="post">
+    {% csrf_token %}
+    <input type="text" name="client_name" placeholder="Имя"><br>
+    <input type="text" name="client_adress" placeholder="Адрес"><br>
+    <input type="text" name="client_number" placeholder="Номер телефона"><br>
+    <input type="text" name="client_comment" placeholder="Коментарий к заказу"><br>
+    <button>Оформить заказ</button>
+
+</form>
+<hr>
+
+</body>
+</html>
